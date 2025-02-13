@@ -1,0 +1,127 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hi :3</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: lightpink;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+        }
+        h1 {
+            font-size: 3em;
+            margin-bottom: 40px;
+        }
+        .buttons {
+            display: flex;
+            gap: 20px;
+        }
+        button {
+            padding: 15px 30px;
+            font-size: 1.5em;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .yes {
+            background-color: palegreen;
+        }
+        .no {
+            background-color: lightcoral;
+        }
+        button:hover {
+            transform: scale(1.1);
+        }
+        .hearts {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: pink;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            z-index: 2;
+            animation: fadeIn 1s ease;
+        }
+        .heart {
+            font-size: 3em;
+            color: red;
+            margin: 10px;
+            animation: float 2s infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0); }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .yay-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 4em;
+            color: white;
+            z-index: 3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Hi Alex, will you be my Valentine?</h1>
+    <div class="buttons">
+        <button class="yes" onclick="showHearts()">Yes</button>
+        <button class="no" onclick="sayBye()">No</button>
+    </div>
+
+    <script>
+        function showHearts() {
+            const heartContainer = document.createElement('div');
+            heartContainer.classList.add('hearts');
+
+            for (let i = 0; i < 50; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                heart.textContent = '❤️';
+                heart.style.animationDelay = `${Math.random() * 2}s`;
+                heartContainer.appendChild(heart);
+            }
+
+            const text = document.createElement('div');
+            text.classList.add('yay-text');
+            text.textContent = 'YAY! 🎉';
+
+            document.body.appendChild(heartContainer);
+            document.body.appendChild(text);
+        }
+
+        function sayBye() {
+            document.body.innerHTML = '';
+            document.body.style.backgroundColor = 'black';
+            const message = document.createElement('div');
+            message.textContent = 'okay bye.';
+            message.style.color = 'white';
+            message.style.fontSize = '3em';
+            message.style.position = 'absolute';
+            message.style.top = '50%';
+            message.style.left = '50%';
+            message.style.transform = 'translate(-50%, -50%)';
+            document.body.appendChild(message);
+        }
+    </script>
+</body>
+</html>
